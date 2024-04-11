@@ -9,8 +9,19 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         //code
-
-        em.close();
-        emf.close();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        try {
+            Member member = new Member();
+            member.setId(1L);
+            member.setName("HelloA");
+            em.persist(member);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
 }
