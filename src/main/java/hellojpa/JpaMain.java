@@ -13,8 +13,8 @@ public class JpaMain {
         transaction.begin();
         try {
             Member member = new Member();
-            member.setId(1L);
-            member.setName("HelloA");
+//            member.setId(1L);
+            member.setName("HelloA2");
             em.persist(member);
             transaction.commit();
         } catch (Exception e) {
